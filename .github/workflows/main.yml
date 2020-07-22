@@ -3,7 +3,7 @@ on:
     branches:
       - master
 
-name: Deploy to Amazon ECS
+name: Deploy in here
 
 jobs:
   deploy:
