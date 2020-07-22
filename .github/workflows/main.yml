@@ -18,8 +18,10 @@ jobs:
     - name: Checkout
       id: checkout
       run: 
+        echo "::set-env name=action_state::yellow"
         echo "name=$AWS_REGION"
     
     - name: Configure AWS credentials
       run: 
         echo "name=$AWS_REGION"
+        echo "name=$action_state"
