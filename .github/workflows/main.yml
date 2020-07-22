@@ -13,10 +13,12 @@ jobs:
     steps:
     - name: Checkout
       id: checkout
-      with:
+      env:
         aws-access-key-id: my-name
         aws-secret-access-key: my-Name2
         aws-region: us-east-1
+      run: 
+        echo "::set-output name=image::${{aws-region}}
     
     - name: Configure AWS credentials
       run: 
