@@ -16,10 +16,10 @@ jobs:
       env:
         aws-access-key-id: my-name
         aws-secret-access-key: my-Name2
-        aws-region: us-east-1
+        AWS_REGION: us-east-1
       run: 
-        echo "::set-output name=image::${{aws-region}}
+        echo "::set-output name=image::$AWS_REGION"
     
     - name: Configure AWS credentials
       run: 
-        echo "::set-output name=image::${{steps.checkout.env.aws-region}}
+        echo "::set-output name=image::${{steps.checkout.env.aws-region}}"
