@@ -21,5 +21,7 @@ jobs:
         echo "::set-output name=image::$AWS_REGION"
     
     - name: Configure AWS credentials
+      env:
+        AWS: ${{steps.checkout.env.AWS_REGION}}
       run: 
-        echo "::set-output name=image::${{steps.checkout.env.AWS_REGION}}"
+        echo "::set-output name=image::$AWS"
