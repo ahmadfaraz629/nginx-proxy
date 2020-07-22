@@ -9,19 +9,17 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    env:
+        aws-access-key-id: my-name
+        aws-secret-access-key: my-Name2
+        AWS_REGION: us-east-1
 
     steps:
     - name: Checkout
       id: checkout
-      env:
-        aws-access-key-id: my-name
-        aws-secret-access-key: my-Name2
-        AWS_REGION: us-east-1
       run: 
-        echo "::set-output name=image::$AWS_REGION"
+        echo "name=$AWS_REGION"
     
     - name: Configure AWS credentials
-      env:
-        AWS: '${{steps.checkout.env}}'
       run: 
-        echo "::set-output name=image::$AWS"
+        echo "name=$AWS_REGION"
