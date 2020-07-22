@@ -22,6 +22,6 @@ jobs:
     
     - name: Configure AWS credentials
       env:
-        AWS: ${{steps.checkout}}
+        AWS: '${{steps.checkout}}'
       run: 
         echo "::set-output name=image::$AWS"
