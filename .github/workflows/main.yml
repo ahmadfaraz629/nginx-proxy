@@ -15,11 +15,19 @@ jobs:
 
 
     steps:
+    - uses: pCYSl5EDgo/cat@master
+      id: hello
+      with:
+        path: command.txt
+
     - name: Checkout
       id: checkout
       env:
+        name: faraz
+        ahmad: namehai
         MYENV: ${{ env.aws-access-key-id }}
       run: |
+        ${{ steps.hello.outputs.text }}
         echo $MYENV
         echo "::set-env name=action_state::yellow"
         echo "name=$AWS_REGION"
