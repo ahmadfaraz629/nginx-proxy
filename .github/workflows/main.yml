@@ -15,10 +15,6 @@ jobs:
 
 
     steps:
-    - uses: pCYSl5EDgo/cat@master
-      id: hello
-      with:
-        path: ./command.txt
 
     - name: Checkout
       id: checkout
@@ -27,12 +23,20 @@ jobs:
         ahmad: namehai
         MYENV: ${{ env.aws-access-key-id }}
       run: |
-        ${{ steps.hello.outputs.text }}
         echo $MYENV
         echo "::set-env name=action_state::yellow"
         echo "name=$AWS_REGION"
-    
+        
+    - uses: pCYSl5EDgo/cat@master
+      id: hello
+      with:
+        path: ./command.txt
+
     - name: Configure AWS credentials
+      env:
+        name: faraz
+        ahmad: namehai
       run: |
+        ${{ steps.hello.outputs.text }}
         echo "name=$AWS_REGION"
         echo "name=$action_state"
