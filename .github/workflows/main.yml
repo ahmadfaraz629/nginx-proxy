@@ -18,7 +18,7 @@ jobs:
     - uses: pCYSl5EDgo/cat@master
       id: hello
       with:
-        path: .github/workflows/command.txt
+        path: ./command.txt
 
     - name: Checkout
       id: checkout
