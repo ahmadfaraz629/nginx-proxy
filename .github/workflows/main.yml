@@ -4,24 +4,27 @@ on:
       - master
 
 name: Deploy in here
-
+env:
+    aws-access-key-id: my-name
+    aws-secret-access-key: my-Name2
+    AWS_REGION: us-east-1
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    env:
-        aws-access-key-id: my-name
-        aws-secret-access-key: my-Name2
-        AWS_REGION: us-east-1
+
 
     steps:
     - name: Checkout
       id: checkout
-      run: 
+      env:
+        MYENV: ${{ env.aws-access-key-id }}
+      run: |
+        echo $MYENV
         echo "::set-env name=action_state::yellow"
         echo "name=$AWS_REGION"
     
     - name: Configure AWS credentials
-      run: 
+      run: |
         echo "name=$AWS_REGION"
         echo "name=$action_state"
