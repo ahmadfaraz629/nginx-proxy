@@ -55,16 +55,18 @@ jobs:
               echo "::set-env name=deploy-backend::yes"
           fi
         done
-    
-    - name: Dump GitHub context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-    - run: |
-        echo "$deploy-frontend"
-        echo "$deploy-backend"
-        echo "$env.deploy-frontend"
-        echo "$env.deploy-backend"
-        echo "$GITHUB_CONTEXT"
+
+    - name: Print env
+      run: echo "$deploy-frontend"
+#     - name: Dump GitHub context
+#       env:
+#         GITHUB_CONTEXT: ${{ toJson(github) }}
+#     - run: |
+#         echo "$deploy-frontend"
+#         echo "$deploy-backend"
+#         echo "$env.deploy-frontend"
+#         echo "$env.deploy-backend"
+#         echo "$GITHUB_CONTEXT"
     
     - name: Dump job context
       env:
