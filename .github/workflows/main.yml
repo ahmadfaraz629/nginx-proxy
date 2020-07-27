@@ -46,13 +46,21 @@ jobs:
       uses: jitterbit/get-changed-files@v1
     - run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
-          echo "Do something with this ${changed_file}."
+          if [[ "$changed_file" == *"workflows"* ]]; then
+              echo "::set-output name=deploy-frontend::yes"
+          fi
+          if [[ "$changed_file" == *".github"* ]]; then
+              echo "::set-output name=deploy-backend::yes"
+          fi
         done
     
     - name: Dump GitHub context
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
+    - run: |
+            echo "${{ steps.files.outputs.deploy-frontend }}"
+            echo "${{ steps.files.outputs.deploy-backend }}"
+            echo "$GITHUB_CONTEXT"
     - name: Dump job context
       env:
         JOB_CONTEXT: ${{ toJson(job) }}
