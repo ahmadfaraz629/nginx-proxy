@@ -41,6 +41,13 @@ jobs:
         ${{ steps.hello.outputs.text }}
         echo "name=$AWS_REGION"
         echo "name=$action_state"
+
+    - id: files
+      uses: jitterbit/get-changed-files@v1
+    - run: |
+        for changed_file in ${{ steps.files.outputs.all }}; do
+          echo "Do something with this ${changed_file}."
+        done
     
     - name: Dump GitHub context
       env:
