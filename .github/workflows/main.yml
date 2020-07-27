@@ -51,6 +51,7 @@ jobs:
         done
 
     - name: Print env
+      if: ${{ contains(env.deployFrontend, 'yes') }}
       run: echo "$deployFrontend" && echo "$deployBackend"
 #     - name: Dump GitHub context
 #       env:
