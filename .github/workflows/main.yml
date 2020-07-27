@@ -47,9 +47,11 @@ jobs:
     - run: |
         for changed_file in ${{ steps.files.outputs.all }}; do
           if [[ "$changed_file" == *"workflows"* ]]; then
+              echo "found frontend"
               echo "::set-output name=deploy-frontend::yes"
           fi
           if [[ "$changed_file" == *".github"* ]]; then
+              echo "found backend"
               echo "::set-output name=deploy-backend::yes"
           fi
         done
