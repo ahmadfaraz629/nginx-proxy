@@ -48,21 +48,23 @@ jobs:
         for changed_file in ${{ steps.files.outputs.all }}; do
           if [[ "$changed_file" == *"workflows"* ]]; then
               echo "found frontend"
-              echo "::set-output name=deploy-frontend::yes"
+              echo "::set-env name=deploy-frontend::yes"
           fi
           if [[ "$changed_file" == *".github"* ]]; then
               echo "found backend"
-              echo "::set-output name=deploy-backend::yes"
+              echo "::set-env name=deploy-backend::yes"
           fi
         done
     
-#     - name: Dump GitHub context
-#       env:
-#         GITHUB_CONTEXT: ${{ toJson(github) }}
-#     - run: |
-#         echo "${{ steps.files.outputs.deploy-frontend }}"
-#         echo "${{ steps.files.outputs.deploy-backend }}"
-#         echo "$GITHUB_CONTEXT"
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+    - run: |
+        echo "$deploy-frontend"
+        echo "$deploy-backend"
+        echo "$env.deploy-frontend"
+        echo "$env.deploy-backend"
+        echo "$GITHUB_CONTEXT"
     
     - name: Dump job context
       env:
