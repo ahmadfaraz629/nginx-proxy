@@ -58,9 +58,10 @@ jobs:
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
     - run: |
-            echo "${{ steps.files.outputs.deploy-frontend }}"
-            echo "${{ steps.files.outputs.deploy-backend }}"
-            echo "$GITHUB_CONTEXT"
+        echo "${{ steps.files.outputs.deploy-frontend }}"
+        echo "${{ steps.files.outputs.deploy-backend }}"
+        echo "$GITHUB_CONTEXT"
+    
     - name: Dump job context
       env:
         JOB_CONTEXT: ${{ toJson(job) }}
